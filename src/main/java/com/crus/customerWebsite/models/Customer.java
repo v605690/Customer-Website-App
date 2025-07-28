@@ -19,4 +19,8 @@ public class Customer {
     private String emailAddress;
     private Integer age;
     private String address;
+
+    @OneToOne(mappedBy = "customer")
+    private Book book;
+
 }
