@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
     <meta charset="utf-8"/>
     <title>Customer Manager</title>
@@ -24,10 +24,10 @@
             <th>Email Address</th>
             <th>Age</th>
             <th>Address</th>
+            <th>Book</th>
             <th>Actions</th>
         </tr>
         </thead>
-
 
         <!--
          Now that your headers are defined, you can reference the
@@ -42,10 +42,14 @@
             <td th:text="${customer.emailAddress}">Email Address</td>
             <td th:text="${customer.age}">Age</td>
             <td th:text="${customer.address}">Address</td>
+            <td th:text="${customer.book}">Book</td>
             <td><!-- actions -->
-
-            <a th:href="@{'/edit/' + ${customer.id}}">Edit</a>
-            <a th:href="@{'/delete/' + ${customer.id}}">Delete</a>
+                <a th:href="@{'/edit/' + ${customer.id}}">Edit</a>
+                <a th:href="@{'/delete/' + ${customer.id}}">Delete</a>
+                <a th:text="${(customer.book == null) ? 'Assign Book' : ''}"
+                   th:href="@{'/books/assign/' + ${customer.id}}">Assign Book</a>
+                <a th:text="${(customer.book != null) ? 'Remove Book' : ''}"
+                   th:href="${(customer.book != null) ? '/remove/'+ customer.book.getId() : ''}"></a>
             </td>
         </tr>
         </tbody>

@@ -1,6 +1,7 @@
 package com.crus.customerWebsite.services;
 
 import com.crus.customerWebsite.models.Book;
+import com.crus.customerWebsite.models.Customer;
 import com.crus.customerWebsite.repos.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +33,11 @@ public class BookService {
     @Transactional
     public Book saveBook(Book book) throws IllegalArgumentException {
         return bookRepository.save(book);
+    }
+
+    @Transactional
+    public List<Book> saveAllBooks(List<Book> bookList) {
+        return bookRepository.saveAll(bookList);
     }
 
     public void removeBook(Long customerId) {

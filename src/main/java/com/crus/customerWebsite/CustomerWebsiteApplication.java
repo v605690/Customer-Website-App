@@ -1,6 +1,8 @@
 package com.crus.customerWebsite;
 
+import com.crus.customerWebsite.models.Book;
 import com.crus.customerWebsite.models.Customer;
+import com.crus.customerWebsite.services.BookService;
 import com.crus.customerWebsite.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -8,12 +10,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 @SpringBootApplication
 public class CustomerWebsiteApplication implements CommandLineRunner {
 
 	@Autowired
 	private CustomerService customerService;
+
+	@Autowired
+	private BookService bookService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(CustomerWebsiteApplication.class, args);
@@ -41,5 +47,23 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
 						.age(33)
 						.build()
 		));
+
+		bookService.saveAllBooks(Arrays.asList(
+                Book.builder()
+                        .title("Title 1")
+                        .author("Author 1")
+                        .isbn("978-0-439-02348-1")
+						.build(),
+				Book.builder()
+						.title("Title 2")
+						.author("Author 2")
+						.isbn("978-0-439-02348-2")
+						.build(),
+				Book.builder()
+						.title("Title 3")
+						.author("Author 1")
+						.isbn("978-0-439-02348-3")
+						.build()
+        ));
 	}
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="">
 <head>
   <meta charset="utf-8" />
   <title>Create New Customer</title>
@@ -26,29 +26,37 @@
       <tr>
         <td>Customer Name:</td>
         <td>
-          <input type="text" th:field="*{fullName}"
-                 required/>
+          <label>
+            <input type="text" th:field="*{fullName}"
+                   required/>
+          </label>
         </td>
       </tr>
       <tr>
         <td>Email Address:</td>
         <td>
-          <input type="email" th:field="*{emailAddress}"
-                 required/>
+          <label>
+            <input type="email" th:field="*{emailAddress}"
+                   required/>
+          </label>
         </td>
       </tr>
       <tr>
         <td>Age:</td>
         <td>
-          <input type="number" th:field="*{age}"
-                 required/>
+          <label>
+            <input type="number" th:field="*{age}"
+                   required/>
+          </label>
         </td>
       </tr>
       <tr>
         <td>Address:</td>
         <td>
-                    <textarea th:field="*{address}" required>
-                    </textarea>
+          <label>
+<textarea th:field="*{address}" required>
+</textarea>
+          </label>
         </td>
       </tr>
       <tr>

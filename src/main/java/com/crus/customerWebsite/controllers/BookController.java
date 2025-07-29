@@ -1,6 +1,7 @@
 package com.crus.customerWebsite.controllers;
 
 import com.crus.customerWebsite.models.Book;
+import com.crus.customerWebsite.models.Customer;
 import com.crus.customerWebsite.services.BookService;
 import com.crus.customerWebsite.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,4 +53,20 @@ public class BookController {
         return "redirect:/";
     }
 
+    @GetMapping("/books/assign/{id}")
+    public String assignBook(@PathVariable(name = "id") Long id, Model model) {
+        Customer customer = customerService.getCustomer(id);
+        List<Book> bookList = bookService.getAvailableBooks();
+        model.addAttribute("customer", customer);
+        model.addAttribute("bookList", bookList);
+        return "assign-book";
+    }
+
+    @PostMapping("/books/assign")
+    public String saveBookAssignment(@RequestParam("customerId") Long customerId, @RequestParam("bookId") Long bookId) {
+        Book book = bookService.getBook(bookId);
+        book.setCustomer(customerService.getCustomer(customerId));
+        bookService.saveBook(book);
+        return "redirect:/";
+    }
 }
